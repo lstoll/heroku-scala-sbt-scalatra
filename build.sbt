@@ -1,3 +1,5 @@
+import com.typesafe.startscript.StartScriptPlugin
+
 organization := "net.lstoll"
 
 name := "cider-endpoint"
@@ -16,3 +18,5 @@ libraryDependencies ++= Seq(
 )
 
 resolvers += "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
+
+seq(StartScriptPlugin.startScriptForClassesSettings: _*)
