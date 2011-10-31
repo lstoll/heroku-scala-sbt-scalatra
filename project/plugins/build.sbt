@@ -3,7 +3,7 @@ resolvers ++= Seq(
   Resolver.url("Typesafe repository", new java.net.URL("http://typesafe.artifactoryonline.com/typesafe/ivy-releases/"))(Resolver.defaultIvyPatterns)
 )
 
-libraryDependencies <+= sbtVersion(v => "com.github.siasia" %% "xsbt-web-plugin" % ("0.1.0-"+v))
+libraryDependencies <+= sbtVersion(v => "com.github.siasia" %% "xsbt-web-plugin" % (v+"-0.2.7"))
 
 resolvers += {
     val typesafeRepoUrl = new java.net.URL("http://repo.typesafe.com/typesafe/ivy-snapshots")
@@ -11,7 +11,6 @@ resolvers += {
     Resolver.url("Typesafe Ivy Snapshot Repository", typesafeRepoUrl)(pattern)
 }
 
-libraryDependencies <<= (libraryDependencies, sbtVersion) { (deps, version) =>
-    deps :+ ("com.typesafe.startscript" %% "xsbt-start-script-plugin" % "0.1-SNAPSHOT" extra("sbtversion" -> version))
-}
+resolvers += Classpaths.typesafeResolver
 
+addSbtPlugin("com.typesafe.startscript" % "xsbt-start-script-plugin" % "0.3.0")
